@@ -1,0 +1,8 @@
+# Configuration for Occlusion & Crowd Density Stress Testing
+stress_test:
+  densities: [5, 10, 15, 20, 25, 30, 40]
+  occlusion_severities: [0.25, 0.50, 0.75]
+  num_frames: 150
+  random_seed: 42
+  output_dir: "assets"
+  iou_eval_threshold: 0.50

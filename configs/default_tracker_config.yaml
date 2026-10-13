@@ -1,0 +1,29 @@
+# Default Configuration for Identity-Preserving Multi-Object Tracking (IP-MOT)
+tracker:
+  det_high_thresh: 0.60          # Minimum score for Stage 1 primary matching
+  det_low_thresh: 0.15           # Minimum score for Stage 2 occluded recovery
+  match_thresh_stage1: 0.70      # Cost threshold for high-confidence Hungarian matching
+  match_thresh_stage2: 0.50      # Cost threshold for low-confidence IoU recovery
+  reid_appearance_thresh: 0.35   # Strict cosine distance threshold for long-term Re-ID
+  appearance_weight: 0.50        # Balance between appearance (lambda) and spatial IoU (1 - lambda)
+  n_init_confirmation: 3         # Consecutive observations required to confirm track
+  max_lost_age: 60               # Maximum frames a lost/occluded track is retained in memory
+
+kalman_filter:
+  std_weight_position: 0.05      # 1/20
+  std_weight_velocity: 0.00625   # 1/160
+  velocity_damping_factor: 0.95  # Damping applied to velocities when unobserved
+  covariance_inflation_rate: 1.05 # Inflation rate during occlusion
+
+appearance:
+  feature_dim: 128
+  base_ema_alpha: 0.90
+  max_exemplars: 8
+  min_update_visibility: 0.60
+  min_update_score: 0.65
+  iou_occlusion_thresh: 0.30
+
+deployment:
+  target_fps: 30.0
+  bounded_latency_ms: 33.33
+  enable_greedy_fallback_cap: 80 # Switch to greedy assignment if active tracks > 80
